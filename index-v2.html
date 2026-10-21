@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Firma Seguro · Plataforma de confianza digital (v2)</title>
+<meta name="description" content="Firma electrónica y digital, validación biométrica, pagarés electrónicos, notificaciones certificadas y gestión documental en un solo ecosistema con validez jurídica en Colombia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  /* ============ Tokens ============ */
+  :root{
+    --bg:#060B1F;
+    --tile:#0E1736;
+    --tile-2:#132048;
+    --stroke:rgba(255,255,255,.07);
+    --text:#FFFFFF;
+    --text-2:rgba(255,255,255,.72);
+    --text-3:rgba(255,255,255,.5);
+
+    --blue:#2E9BD6;
+    --blue-600:#1D74B8;
+    --blue-700:#17549A;
+    --blue-glow:rgba(46,155,214,.45);
+    --red:#E5381C;
+    --orange:#FF7A45;
+    --mint:#3FD39A;
+
+    --ink:#0C1632;
+    --ink-2:#3C4663;
+    --muted:#6B7591;
+    --paper:#F5F8FC;
+    --line:#E2E8F1;
+
+    --font:"Onest",sans-serif;
+    --mono:"IBM Plex Mono",monospace;
+    --r-xl:28px;
+    --r-lg:22px;
+    --gap:16px;
+    --container:1240px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);background:var(--bg);color:var(--text);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:var(--container);margin:0 auto;padding:0 24px}
+
+  /* ============ Shared ============ */
+  .tile{position:relative;background:linear-gradient(180deg,var(--tile-2) 0%,var(--tile) 100%);border-radius:var(--r-lg);box-shadow:inset 0 0 0 1px var(--stroke);padding:28px;overflow:hidden}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin:0 0 16px}
+  .h-section{font-size:clamp(32px,3.6vw,50px);line-height:1.05;letter-spacing:-.03em;font-weight:700;margin:0}
+  .lead{font-size:clamp(16px,1.3vw,19px);line-height:1.6;color:var(--text-2);margin:0}
+  .chip-ico{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:18px;color:#fff;flex:none;background:linear-gradient(145deg,#4FB3EA,var(--blue-600));box-shadow:0 8px 24px -8px var(--blue-glow),inset 0 1px 0 rgba(255,255,255,.25)}
+  .chip-ico.warm{background:linear-gradient(145deg,var(--orange),var(--red));box-shadow:0 8px 24px -8px rgba(229,56,28,.55),inset 0 1px 0 rgba(255,255,255,.25)}
+  .chip-ico.sm{width:36px;height:36px;font-size:14px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font);font-weight:700;font-size:16px;text-decoration:none;border-radius:999px;padding:15px 26px;line-height:1;border:0;cursor:pointer;white-space:nowrap;transition:transform .2s,box-shadow .2s,background-color .2s,color .2s}
+  .btn i{font-size:13px;transition:transform .2s}
+  .btn:hover i{transform:translateX(3px)}
+  .btn-blue{background:linear-gradient(180deg,#3AA6E0,var(--blue-600));color:#fff;box-shadow:0 10px 30px -10px var(--blue-glow),inset 0 1px 0 rgba(255,255,255,.3)}
+  .btn-blue:hover{box-shadow:0 14px 36px -10px rgba(46,155,214,.7),inset 0 1px 0 rgba(255,255,255,.3)}
+  .btn-white{background:#fff;color:var(--ink)}
+  .btn-white:hover{background:#EAF5FC}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+  .btn-ghost:hover{background:rgba(255,255,255,.16)}
+  .link{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;color:#fff}
+  .link i{font-size:12px;color:var(--blue);transition:transform .2s}
+  .link:hover i{transform:translateX(3px)}
+
+  /* ============ Header (claro para respetar el logo) ============ */
+  .header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line);color:var(--ink)}
+  .header .wrap{display:flex;align-items:center;gap:40px;height:76px}
+  .logo img{height:46px;width:auto}
+  .nav{display:flex;align-items:center;gap:4px;flex:1}
+  .nav-link{display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;color:var(--ink);background:none;border:0;font-family:var(--font);cursor:pointer}
+  .nav-link:hover,.nav-item.open > .nav-link{background:var(--paper)}
+  .nav-link .fa-chevron-down{font-size:10px;transition:transform .2s}
+  .nav-item.open .fa-chevron-down{transform:rotate(180deg)}
+  .header-actions{display:flex;align-items:center;gap:8px}
+  .header-actions .btn{padding:12px 20px;font-size:15px}
+  .menu-toggle{display:none;background:none;border:0;font-size:22px;color:var(--ink);padding:8px;cursor:pointer}
+  .mega{position:absolute;left:0;right:0;top:76px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(6,11,31,.35);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s}
+  .nav-item.open .mega{opacity:1;visibility:visible;transform:none}
+  .mega-inner{display:grid;grid-template-columns:repeat(4,1fr) 1.25fr;gap:28px;padding:36px 24px 40px;max-width:var(--container);margin:0 auto}
+  .mega-col h6{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+  .mega-col a{display:flex;gap:12px;padding:10px;margin:0 -10px;border-radius:12px;text-decoration:none}
+  .mega-col a:hover{background:var(--paper)}
+  .mega-col a i{color:var(--blue-600);font-size:18px;width:22px;text-align:center;margin-top:3px}
+  .mega-col strong{display:block;font-size:15px;line-height:1.3}
+  .mega-col span{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .mega-feature{background:var(--bg);color:#fff;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:10px;text-decoration:none}
+  .mega-feature .eyebrow{margin:0}
+  .mega-feature strong{font-size:20px;line-height:1.2}
+  .mega-feature p{margin:0;font-size:14px;color:var(--text-2);line-height:1.5}
+  .mega-feature .link{margin-top:auto}
+
+  /* ============ HERO BENTO ============ */
+  .hero{padding:28px 0 0;position:relative;overflow-x:clip}
+  .hero::before{content:"";position:absolute;left:50%;top:-80px;width:1100px;height:700px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(46,155,214,.22),transparent);pointer-events:none}
+  .hb{position:relative;display:grid;gap:var(--gap);grid-template-columns:1.1fr 1.25fr 1.25fr 1.1fr;grid-template-areas:
+    "a b b c"
+    "a b b s"
+    "d e f t"
+    "h e f t"}
+  .hb-a{grid-area:a;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:420px}
+  .hb-b{grid-area:b;overflow:visible;text-align:center;padding:52px 48px 236px;background:
+      radial-gradient(120% 90% at 50% 0%,rgba(255,255,255,.18),transparent 55%),
+      linear-gradient(165deg,#3AA6E0 0%,#1D74B8 45%,#163F86 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 40px 90px -40px rgba(46,155,214,.6)}
+  .hb-c{grid-area:c;display:flex;align-items:center;justify-content:center}
+  .hb-s{grid-area:s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .hb-d{grid-area:d;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+  .hb-e{grid-area:e}
+  .hb-f{grid-area:f}
+  .hb-e,.hb-f{display:flex;flex-direction:column;justify-content:flex-end;gap:12px;min-height:330px;padding-top:160px}
+  .hb-t{grid-area:t}
+  .hb-h{grid-area:h;display:flex;align-items:center;gap:14px}
+
+  .hb-a .tagline{font-size:clamp(24px,2vw,29px);line-height:1.08;letter-spacing:-.025em;font-weight:700;margin:0}
+  .hb-a .tagline span{color:var(--blue)}
+  .hb-a p{margin:0;color:var(--text-2);font-size:15px;line-height:1.55}
+  .hb-a .free{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--stroke);text-decoration:none}
+  .hb-a .free strong{display:block;font-size:15px}
+  .hb-a .free small{display:block;font-size:13px;color:var(--text-3)}
+  .hb-a .free > i{margin-left:auto;color:var(--blue);font-size:13px}
+
+  .pill-brand{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);font-size:13px;font-weight:600;letter-spacing:.01em}
+  .pill-brand i{font-size:12px}
+  .hb-b h1{font-size:clamp(38px,4.4vw,62px);line-height:1.02;letter-spacing:-.035em;font-weight:700;margin:22px auto 18px;max-width:640px}
+  .hb-b .lead{color:rgba(255,255,255,.88);max-width:520px;margin:0 auto}
+  .hb-b .ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+
+  /* Orbe con foto + anillo de texto (el "notch" lo da el anillo del color de fondo) */
+  .orb{position:absolute;left:50%;bottom:0;transform:translate(-50%,50%);width:290px;height:290px;z-index:3}
+  .orb-photo{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 40%,#2E7FC4 0%,#0F2A63 60%,#081538 100%);box-shadow:0 0 0 16px var(--bg),0 0 0 17px rgba(255,255,255,.08),0 30px 80px -20px rgba(46,155,214,.55)}
+  .orb-photo img{position:absolute;width:160%;max-width:none;left:-30%;top:-4%}
+  .orb-ring{position:absolute;inset:-58px;animation:spin 60s linear infinite;pointer-events:none}
+  .orb-ring text{font-family:var(--mono);font-size:10.5px;letter-spacing:.32em;fill:rgba(255,255,255,.38);text-transform:uppercase}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .connector{position:absolute;top:28px;width:2px;height:78px;background:linear-gradient(180deg,transparent,rgba(46,155,214,.6))}
+  .connector::after{content:"";position:absolute;bottom:-4px;left:-3px;width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 12px var(--blue)}
+  .hb-e .connector{right:34px}
+  .hb-f .connector{left:34px}
+  .hb-f .connector.warm{background:linear-gradient(180deg,transparent,rgba(255,122,69,.6))}
+  .hb-f .connector.warm::after{background:var(--orange);box-shadow:0 0 12px var(--orange)}
+  .hb-e h3,.hb-f h3{margin:4px 0 0;font-size:19px;letter-spacing:-.01em;line-height:1.2}
+  .hb-e p,.hb-f p{margin:0;font-size:14.5px;color:var(--text-2);line-height:1.5}
+
+  .toggle{display:flex;align-items:center;gap:14px}
+  .switch{position:relative;width:96px;height:52px;border-radius:999px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--stroke),inset 0 4px 14px rgba(0,0,0,.35)}
+  .switch .knob{position:absolute;right:4px;top:4px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+  .toggle-label strong{display:block;font-size:15px;line-height:1.2}
+  .toggle-label small{display:block;font-family:var(--mono);font-size:11.5px;color:var(--mint);margin-top:3px}
+
+  .big-num{font-size:62px;line-height:1;font-weight:700;letter-spacing:-.04em;background:linear-gradient(180deg,#fff,#9CCDF0);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .bracket{display:inline-flex;align-items:center;gap:12px;margin-top:10px;font-size:14px;color:var(--text-2)}
+  .bracket::before,.bracket::after{content:"";width:8px;height:22px;border:2px solid var(--blue);border-right:0;border-radius:2px}
+  .bracket::after{border:2px solid var(--blue);border-left:0}
+
+  .hb-d .law{display:flex;flex-direction:column;gap:6px}
+  .hb-d .law strong{font-size:17px;line-height:1.25}
+  .hb-d .law small{font-size:13.5px;color:var(--text-2);line-height:1.45}
+  .hb-d img{width:100%;max-width:240px;height:auto;border-radius:10px;align-self:flex-start}
+
+  .hb-t h3{margin:0 0 6px;font-size:18px}
+  .hb-t > p{margin:0;font-size:14px;color:var(--text-2);line-height:1.5;max-width:220px}
+  .files{position:relative;height:200px;margin-top:18px}
+  .file{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;font-size:13px;font-weight:600;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);white-space:nowrap}
+  .file i{font-size:12px;color:var(--blue)}
+  .file.ok{box-shadow:inset 0 0 0 1px rgba(63,211,154,.55);background:rgba(63,211,154,.1)}
+  .file.ok i{color:var(--mint)}
+  .file.warm{box-shadow:inset 0 0 0 1px rgba(255,122,69,.55);background:rgba(255,122,69,.1)}
+  .file.warm i{color:var(--orange)}
+  .file.v{writing-mode:vertical-rl;padding:14px 9px}
+
+  .hb-h strong{display:block;font-size:16px;line-height:1.25}
+  .hb-h small{display:block;font-size:13px;color:var(--text-2)}
+
+  /* ============ Aliados ============ */
+  .allies{padding:56px 0 24px}
+  .allies .wrap{display:flex;align-items:center;gap:48px}
+  .allies p{margin:0;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);flex:none}
+  .ally-row{flex:1;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .ally-track{display:flex;align-items:center;gap:64px;width:max-content;animation:marquee 38s linear infinite}
+  .ally-track img{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.55}
+  .ally-track img.tall{height:44px}
+  .ally-track img.opaque{filter:grayscale(1) invert(1);mix-blend-mode:screen;opacity:.6}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ============ Secciones ============ */
+  .section{padding:110px 0}
+  .section-head{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;margin-bottom:48px}
+
+  /* Ecosistema */
+  .eco-grid{display:grid;gap:var(--gap);grid-template-columns:repeat(4,1fr);grid-template-areas:
+    "core core bio  bio"
+    "core core risk docs"
+    "noti noti pag  pag"
+    "onb  onb  onb  onb"}
+  .eco-grid .tile{display:flex;flex-direction:column;gap:12px}
+  .eco-grid h3{margin:0;font-size:22px;letter-spacing:-.015em;line-height:1.2}
+  .eco-grid p{margin:0;font-size:15px;color:var(--text-2);line-height:1.55}
+  .eco-grid .link{margin-top:auto}
+  .stage{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+
+  .t-core{grid-area:core;padding:40px;background:radial-gradient(110% 70% at 100% 0%,rgba(255,255,255,.14),transparent 60%),linear-gradient(160deg,#2B93D0 0%,#1D74B8 50%,#163F86 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+  .t-core .stage{color:rgba(255,255,255,.75)}
+  .t-core h3{font-size:clamp(30px,2.8vw,40px);letter-spacing:-.03em;line-height:1.05}
+  .t-core p{color:rgba(255,255,255,.85);font-size:16px;max-width:460px}
+  .t-core .free-tag{position:absolute;top:28px;right:28px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.16);padding:7px 12px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+  .t-core .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .sign-mock{margin-top:auto;background:rgba(6,11,31,.35);border-radius:18px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);padding:18px;display:grid;gap:10px}
+  .signer{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.06)}
+  .signer .av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:rgba(255,255,255,.16)}
+  .signer strong{display:block;font-size:14px;line-height:1.2}
+  .signer small{display:block;font-size:12px;color:rgba(255,255,255,.6)}
+  .signer .st{font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:999px}
+  .signer .st.ok{background:rgba(63,211,154,.16);color:var(--mint)}
+  .signer .st.wait{background:rgba(255,255,255,.1);color:rgba(255,255,255,.75)}
+  .sign-mock .doc{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.7);padding:0 4px}
+  .sign-mock .doc b{color:#fff;font-weight:600}
+
+  .t-bio{grid-area:bio;padding-right:46%;min-height:300px}
+  .t-bio img{position:absolute;right:-10px;bottom:-30px;width:46%;max-width:none}
+  .t-risk{grid-area:risk}.t-docs{grid-area:docs}
+  .t-noti{grid-area:noti;padding-right:48%;min-height:300px}
+  .t-noti img{position:absolute;right:-30px;bottom:-24px;width:56%;max-width:none}
+  .t-pag{grid-area:pag;padding-right:48%;min-height:300px}
+  .t-pag img{position:absolute;right:-26px;bottom:-20px;width:54%;max-width:none}
+  .t-onb{grid-area:onb;flex-direction:row !important;align-items:center;gap:36px !important;padding:30px 36px}
+  .t-onb .body{display:flex;flex-direction:column;gap:8px;max-width:420px}
+  .onb-line{flex:1;display:flex;align-items:center;justify-content:space-between;position:relative}
+  .onb-line::before{content:"";position:absolute;left:23px;right:23px;top:50%;height:2px;background:repeating-linear-gradient(90deg,rgba(46,155,214,.6) 0 6px,transparent 6px 12px)}
+  .onb-line .chip-ico{position:relative}
+
+  /* Humano */
+  .human-grid{display:grid;gap:var(--gap);grid-template-columns:1.25fr 1fr}
+  .photo-tile{padding:0;min-height:680px;background:#0B1430}
+  /* object-position a la izquierda: deja fuera el gráfico "75%" que trae la foto a la derecha */
+  .photo-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0% 30%}
+  .photo-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,11,31,.75) 100%)}
+  .glass{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;background:rgba(10,18,44,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 20px 40px -20px rgba(0,0,0,.6)}
+  .glass strong{display:block;font-size:14px;line-height:1.2}
+  .glass small{display:block;font-family:var(--mono);font-size:11px;color:var(--text-2)}
+  .glass.g1{right:24px;top:28px}
+  .glass.g2{left:24px;bottom:28px}
+  .human-side{display:grid;gap:var(--gap);grid-template-rows:auto 1fr}
+  .human-intro h2{margin:0 0 14px}
+  .areas{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+  .area{display:flex;flex-direction:column;gap:10px;padding:24px}
+  .area h3{margin:6px 0 0;font-size:18px}
+  .area p{margin:0;font-size:14px;color:var(--text-2);line-height:1.5}
+
+  /* Flujo */
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--gap);position:relative}
+  .flow-step{display:flex;flex-direction:column;gap:12px;min-height:280px;transition:transform .25s,box-shadow .25s}
+  .flow-step:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1px rgba(46,155,214,.45)}
+  .flow-step .num{font-family:var(--mono);font-size:13px;color:var(--text-3)}
+  .flow-step h3{margin:auto 0 0;font-size:19px;line-height:1.2;letter-spacing:-.01em}
+  .flow-step p{margin:0;font-size:14px;color:var(--text-2);line-height:1.5}
+  .flow-step .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+  .flow-step .tags span{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:rgba(46,155,214,.14);color:#9CCDF0}
+  .flow-step.last{background:radial-gradient(100% 80% at 100% 0%,rgba(255,255,255,.12),transparent 60%),linear-gradient(160deg,#2B93D0,#163F86);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+  .flow-step.last .num{color:rgba(255,255,255,.7)}
+  .flow-step.last p{color:rgba(255,255,255,.85)}
+  .flow-step.last .tags span{background:rgba(255,255,255,.16);color:#fff}
+  .flow-cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:28px}
+  .flow-cta p{margin:0;color:var(--text-3);font-size:14px}
+
+  /* Legal */
+  .legal-grid{display:grid;gap:var(--gap);grid-template-columns:repeat(3,1fr);grid-template-areas:
+    "laws laws onac"
+    "s1   s2   s3"}
+  .t-laws{grid-area:laws;padding:36px}
+  .t-laws ul{list-style:none;margin:20px 0 22px;padding:0}
+  .t-laws li{display:grid;grid-template-columns:210px 1fr;gap:20px;padding:14px 0;border-bottom:1px solid var(--stroke);font-size:15px;color:var(--text-2)}
+  .t-laws li strong{color:#fff}
+  .new{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--red);padding:3px 7px;border-radius:999px;margin-left:8px;vertical-align:2px}
+  .t-onac{grid-area:onac;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+  .t-onac img{width:100%;max-width:300px;height:auto;border-radius:12px;align-self:flex-start}
+  .t-onac h3{margin:0;font-size:20px;line-height:1.25}
+  .t-onac p{margin:0;font-size:14px;color:var(--text-2)}
+  .sig{display:flex;flex-direction:column;gap:12px}
+  .s1{grid-area:s1}.s2{grid-area:s2}.s3{grid-area:s3}
+  .sig .level{display:flex;gap:5px}
+  .sig .level span{width:26px;height:6px;border-radius:3px;background:rgba(255,255,255,.12)}
+  .sig .level span.on{background:var(--blue);box-shadow:0 0 10px rgba(46,155,214,.6)}
+  .sig h3{margin:4px 0 0;font-size:19px;line-height:1.2}
+  .sig p{margin:0;font-size:14px;color:var(--text-2);line-height:1.55}
+  .sig .use{margin-top:auto;padding-top:12px;border-top:1px solid var(--stroke);font-size:13px;color:var(--text-3)}
+  .sig .use b{color:#fff;font-weight:600}
+
+  /* CTA final */
+  .final-grid{display:grid;gap:var(--gap);grid-template-columns:1.2fr 1fr .8fr}
+  .final-grid .tile{display:flex;flex-direction:column;gap:14px;min-height:320px;padding:36px}
+  .final-grid h3{margin:0;font-size:clamp(26px,2.3vw,32px);line-height:1.1;letter-spacing:-.025em}
+  .final-grid p{margin:0;font-size:15.5px;color:var(--text-2)}
+  .final-grid .btn{align-self:flex-start;margin-top:auto}
+  .t-free{background:radial-gradient(100% 80% at 0% 0%,rgba(255,255,255,.16),transparent 60%),linear-gradient(160deg,#3AA6E0,#1D74B8 55%,#163F86);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 40px 90px -40px rgba(46,155,214,.6)}
+  .t-free p{color:rgba(255,255,255,.88)}
+  .t-dev pre{margin:4px 0 0;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--text-2);background:rgba(0,0,0,.25);border-radius:12px;padding:14px;box-shadow:inset 0 0 0 1px var(--stroke);white-space:pre-wrap}
+  .t-dev pre b{color:#9CCDF0;font-weight:500}
+
+  /* Footer claro (respeta el logo) */
+  .footer{background:var(--paper);color:var(--ink);padding:72px 0 32px;margin-top:110px}
+  .footer-grid{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:40px}
+  .footer .logo img{height:52px}
+  .footer-brand p{margin:18px 0 0;font-size:14px;color:var(--muted);max-width:280px}
+  .footer h6{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:6px 0 16px}
+  .footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .footer ul a{text-decoration:none;font-size:15px;color:var(--ink-2)}
+  .footer ul a:hover{color:var(--blue-600)}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+  .footer-bottom nav{display:flex;gap:24px;flex-wrap:wrap}
+  .footer-bottom a{text-decoration:none}
+  .social{display:flex;gap:14px}
+  .social a{font-size:17px;color:var(--ink-2)}
+
+  /* Reveal */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .orb-ring,.ally-track{animation:none}
+  }
+
+  /* ============ Responsive ============ */
+  @media (max-width:1080px){
+    .nav,.header-actions .btn-text{display:none}
+    .menu-toggle{display:block}
+    .header-actions{margin-left:auto}
+    .header .wrap{gap:16px}
+    .nav.mobile-open{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:stretch;background:#fff;border-bottom:1px solid var(--line);padding:12px 24px 24px;max-height:calc(100vh - 76px);overflow:auto}
+    .nav.mobile-open .nav-link{justify-content:space-between;padding:14px 4px;font-size:17px;border-radius:8px}
+    .nav.mobile-open .mega{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;display:none}
+    .nav.mobile-open .nav-item.open .mega{display:block}
+    .mega-inner{grid-template-columns:1fr;gap:18px;padding:4px 0 16px}
+
+    .hb{grid-template-columns:1fr 1fr;grid-template-areas:
+      "b b"
+      "e f"
+      "a c"
+      "a s"
+      "d t"
+      "h t"}
+    .hb-a{min-height:0}
+    .section-head{grid-template-columns:1fr}
+    .eco-grid{grid-template-columns:1fr 1fr;grid-template-areas:"core core" "bio bio" "risk docs" "noti noti" "pag pag" "onb onb"}
+    .human-grid{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr 1fr}
+    .flow-step.last{grid-column:1 / -1;min-height:0}
+    .legal-grid{grid-template-columns:1fr;grid-template-areas:"laws" "onac" "s1" "s2" "s3"}
+    .final-grid{grid-template-columns:1fr 1fr}
+    .t-dev{grid-column:1 / -1}
+    .footer-grid{grid-template-columns:1fr 1fr}
+    .footer-brand{grid-column:1 / -1}
+  }
+  @media (max-width:640px){
+    body{font-size:16px}
+    .wrap{padding:0 16px}
+    .logo img{height:38px}
+    .header-actions .btn{padding:11px 16px;font-size:14px}
+    .hb{grid-template-columns:1fr;grid-template-areas:"b" "e" "f" "a" "d" "t"}
+    .hb-c,.hb-s,.hb-h{display:none}
+    .hb-b{padding:40px 22px 168px}
+    .orb{width:230px;height:230px}
+    .orb-ring{inset:-46px}
+    .hb-e{padding-top:140px}
+    .hb-e,.hb-f{min-height:0}
+    .hb-f{padding-top:28px}
+    .hb-f .connector{display:none}
+    .hb-b .ctas .btn{width:100%}
+    .allies .wrap{flex-direction:column;align-items:flex-start;gap:20px}
+    .ally-row{width:100%}
+    .section{padding:80px 0}
+    .eco-grid{grid-template-columns:1fr;grid-template-areas:"core" "bio" "risk" "docs" "noti" "pag" "onb"}
+    .t-core{padding:28px}
+    .t-core .free-tag{position:static;align-self:flex-start}
+    .t-bio,.t-noti,.t-pag{padding-right:28px;padding-bottom:220px}
+    .t-bio img{width:62%;right:50%;transform:translateX(50%);bottom:-40px}
+    .t-noti img,.t-pag img{width:84%;right:-20px}
+    .t-onb{flex-direction:column !important;align-items:flex-start}
+    .onb-line{width:100%}
+    .photo-tile{min-height:420px}
+    .areas{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr}
+    .flow-step{min-height:0}
+    .t-laws li{grid-template-columns:1fr;gap:4px}
+    .final-grid{grid-template-columns:1fr}
+    .final-grid .btn{width:100%}
+    .footer-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#" aria-label="Firma Seguro, inicio"><img src="assets/logo-firma-seguro.png" alt="Firma Seguro · Documentos al instante" width="430" height="142"></a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <div class="nav-item" data-mega>
+        <button class="nav-link" aria-expanded="false" aria-controls="mega-soluciones">Soluciones <i class="fas fa-chevron-down" aria-hidden="true"></i></button>
+        <div class="mega" id="mega-soluciones">
+          <div class="mega-inner">
+            <div class="mega-col">
+              <h6>Firma</h6>
+              <a href="#"><i class="fas fa-file-signature"></i><div><strong>Firma electrónica y digital</strong><span>Simple, certificada o con certificado digital</span></div></a>
+              <a href="#"><i class="fas fa-file-invoice-dollar"></i><div><strong>Pagaré electrónico</strong><span>Emisión, endoso y custodia</span></div></a>
+            </div>
+            <div class="mega-col">
+              <h6>Identidad</h6>
+              <a href="#"><i class="fas fa-fingerprint"></i><div><strong>Validación biométrica</strong><span>Rostro, prueba de vida y documento</span></div></a>
+              <a href="#"><i class="fas fa-user-shield"></i><div><strong>Listas de riesgo</strong><span>Consulta en listas restrictivas</span></div></a>
+            </div>
+            <div class="mega-col">
+              <h6>Comunicación</h6>
+              <a href="#"><i class="fas fa-bell"></i><div><strong>Notificaciones certificadas</strong><span>Email y SMS con trazabilidad</span></div></a>
+            </div>
+            <div class="mega-col">
+              <h6>Custodia</h6>
+              <a href="#"><i class="fas fa-folder-open"></i><div><strong>Gestión documental</strong><span>Expedientes organizados y seguros</span></div></a>
+            </div>
+            <a class="mega-feature" href="#flujo">
+              <p class="eyebrow">Todo conectado</p>
+              <strong>Onboarding digital de principio a fin</strong>
+              <p>Combina los módulos en un solo flujo, de la captura de datos al expediente final.</p>
+              <span class="link">Ver cómo funciona <i class="fas fa-arrow-right"></i></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item"><a class="nav-link" href="#ecosistema">Plataforma</a></div>
+      <div class="nav-item"><a class="nav-link" href="#desarrolladores">Desarrolladores</a></div>
+      <div class="nav-item"><a class="nav-link" href="#">Planes</a></div>
+      <div class="nav-item"><a class="nav-link" href="#">Recursos</a></div>
+    </nav>
+    <div class="header-actions">
+      <a class="btn-text nav-link" href="https://app.firmaseguro.co/Login">Ingresar</a>
+      <a class="btn btn-blue" href="https://app.firmaseguro.co/registro">Empieza gratis</a>
+    </div>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO BENTO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hb">
+
+      <div class="tile hb-a reveal">
+        <div>
+          <p class="eyebrow">Documentos al instante</p>
+          <p class="tagline">Del papel al <span>expediente digital</span>, sin salir de tu pantalla.</p>
+        </div>
+        <p>Firma desde la web o el celular. Sin imprimir, sin escanear, sin desplazamientos.</p>
+        <a class="free" href="https://app.firmaseguro.co/registro">
+          <span class="chip-ico sm"><i class="fas fa-file-signature"></i></span>
+          <span><strong>Firma electrónica</strong><small>Prueba gratis</small></span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="tile hb-b reveal">
+        <span class="pill-brand"><i class="fas fa-shield-alt"></i>Plataforma de confianza digital</span>
+        <h1>Firma, valida y notifica con validez jurídica.</h1>
+        <p class="lead">Un ecosistema conectado para cerrar tus procesos en minutos: firma electrónica, biometría, pagarés y notificaciones certificadas.</p>
+        <div class="ctas">
+          <a class="btn btn-white" href="https://app.firmaseguro.co/registro">Empieza gratis <i class="fas fa-arrow-right"></i></a>
+          <a class="btn btn-ghost" href="#contacto">Hablar con ventas</a>
+        </div>
+
+        <div class="orb" aria-hidden="true">
+          <svg class="orb-ring" viewBox="0 0 406 406">
+            <defs><path id="ring" d="M203,203 m-180,0 a180,180 0 1,1 360,0 a180,180 0 1,1 -360,0"/></defs>
+            <text><textPath href="#ring" textLength="1115" lengthAdjust="spacing">Identidad verificada · Firma digital · Estampa de tiempo · Evidencia · Ley 527 ·</textPath></text>
+          </svg>
+          <div class="orb-photo"><img src="assets/biometria_2.webp" alt=""></div>
+        </div>
+      </div>
+
+      <div class="tile hb-c reveal">
+        <div class="toggle">
+          <div class="switch"><span class="knob chip-ico warm"><i class="fas fa-fingerprint"></i></span></div>
+          <div class="toggle-label"><strong>Identidad<br>verificada</strong><small>● prueba de vida OK</small></div>
+        </div>
+      </div>
+
+      <div class="tile hb-s reveal">
+        <div class="big-num">6</div>
+        <span class="bracket">soluciones conectadas</span>
+      </div>
+
+      <div class="tile hb-d reveal">
+        <span class="chip-ico sm"><i class="fas fa-balance-scale"></i></span>
+        <div class="law"><strong>Validez jurídica en Colombia</strong><small>Ley 527 de 1999 · Decreto 2364 de 2012</small></div>
+        <img src="assets/onac.webp" alt="ONAC">
+      </div>
+
+      <div class="tile hb-e reveal">
+        <span class="connector" aria-hidden="true"></span>
+        <span class="chip-ico warm"><i class="fas fa-user-check"></i></span>
+        <h3>Validación biométrica</h3>
+        <p>Confirma que cada persona es quien dice ser antes de firmar.</p>
+      </div>
+
+      <div class="tile hb-f reveal">
+        <span class="connector warm" aria-hidden="true"></span>
+        <span class="chip-ico"><i class="fas fa-file-signature"></i></span>
+        <h3>Firma electrónica y digital</h3>
+        <p>Firma simple, certificada o digital, con evidencias en cada paso.</p>
+      </div>
+
+      <div class="tile hb-t reveal">
+        <h3>Tu expediente</h3>
+        <p>Cada etapa deja evidencia verificable.</p>
+        <div class="files" aria-hidden="true">
+          <span class="file" style="left:0;top:8px"><i class="fas fa-file-pdf"></i>Contrato.pdf</span>
+          <span class="file ok" style="left:58px;top:62px"><i class="fas fa-check"></i>Firmado</span>
+          <span class="file warm" style="left:4px;top:116px"><i class="fas fa-file-invoice-dollar"></i>Pagaré</span>
+          <span class="file" style="left:92px;top:160px"><i class="fas fa-bell"></i>Notificado</span>
+          <span class="file v" style="right:0;top:24px"><i class="fas fa-lock"></i>SHA-256</span>
+        </div>
+      </div>
+
+      <div class="tile hb-h reveal">
+        <span class="chip-ico sm"><i class="fas fa-mobile-alt"></i></span>
+        <span><strong>100% en línea</strong><small>Web y celular, 24/7</small></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= ALIADOS ================= -->
+<section class="allies" aria-label="Tecnología y aliados">
+  <div class="wrap">
+    <p>Tecnología y aliados</p>
+    <div class="ally-row">
+      <div class="ally-track">
+        <img src="assets/uanataca.webp" alt="Uanataca">
+        <img src="https://firmaseguro.co/wp-content/uploads/2026/10/Jumio-logo.svg" alt="Jumio" class="tall">
+        <img src="https://firmaseguro.co/wp-content/uploads/2026/10/sinergia-logo.svg" alt="Sinergia">
+        <img src="assets/datafile-logo.webp" alt="Datafile" class="tall">
+        <img src="assets/stradata.webp" alt="Stradata">
+        <img src="assets/logo_confiar.png" alt="Confiar" class="tall opaque">
+        <img src="assets/Logo-Softmanagement-App.png" alt="Softmanagement" class="tall">
+        <!-- duplicado para el loop -->
+        <img src="assets/uanataca.webp" alt="" aria-hidden="true">
+        <img src="https://firmaseguro.co/wp-content/uploads/2026/10/Jumio-logo.svg" alt="" aria-hidden="true" class="tall">
+        <img src="https://firmaseguro.co/wp-content/uploads/2026/10/sinergia-logo.svg" alt="" aria-hidden="true">
+        <img src="assets/datafile-logo.webp" alt="" aria-hidden="true" class="tall">
+        <img src="assets/stradata.webp" alt="" aria-hidden="true">
+        <img src="assets/logo_confiar.png" alt="" aria-hidden="true" class="tall opaque">
+        <img src="assets/Logo-Softmanagement-App.png" alt="" aria-hidden="true" class="tall">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ECOSISTEMA ================= -->
+<section class="section" id="ecosistema">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow reveal">El ecosistema</p>
+        <h2 class="h-section reveal">Todo el ciclo del documento, en un solo lugar.</h2>
+      </div>
+      <p class="lead reveal">La firma es el centro. A su alrededor, las soluciones para identificar, verificar, notificar y custodiar, conectadas entre sí.</p>
+    </div>
+
+    <div class="eco-grid">
+      <article class="tile t-core reveal">
+        <span class="free-tag">Prueba gratis</span>
+        <span class="stage">Firma</span>
+        <h3>Firma electrónica y digital</h3>
+        <p>Envía, firma y descarga documentos desde la web o el celular, con factores de autenticación y trazabilidad completa.</p>
+        <div class="ctas">
+          <a class="btn btn-white" href="https://app.firmaseguro.co/registro">Empieza gratis <i class="fas fa-arrow-right"></i></a>
+          <a class="btn btn-ghost" href="#">Ver planes</a>
+        </div>
+        <div class="sign-mock" aria-hidden="true">
+          <div class="doc"><span><b>Contrato de arrendamiento.pdf</b></span><span>2 de 3 firmas</span></div>
+          <div class="signer"><span class="av">LG</span><div><strong>Laura Gómez</strong><small>SMS + selfie</small></div><span class="st ok">Firmó</span></div>
+          <div class="signer"><span class="av">AR</span><div><strong>Andrés Ruiz</strong><small>Firma digital certificada</small></div><span class="st ok">Firmó</span></div>
+          <div class="signer"><span class="av">MC</span><div><strong>María Castro</strong><small>Email + llamada</small></div><span class="st wait">Pendiente</span></div>
+        </div>
+      </article>
+
+      <article class="tile t-bio reveal">
+        <span class="stage">Identidad</span>
+        <span class="chip-ico warm"><i class="fas fa-fingerprint"></i></span>
+        <h3>Validación biométrica</h3>
+        <p>Reconocimiento facial, prueba de vida y validación del documento de identidad.</p>
+        <a class="link" href="#contacto">Solicitar información <i class="fas fa-arrow-right"></i></a>
+        <img src="assets/biometria_2.webp" alt="Persona validando su identidad con el celular">
+      </article>
+
+      <article class="tile t-risk reveal">
+        <span class="stage">Cumplimiento</span>
+        <span class="chip-ico sm"><i class="fas fa-user-shield"></i></span>
+        <h3>Listas de riesgo</h3>
+        <p>Consulta en listas restrictivas antes de vincular.</p>
+        <a class="link" href="#contacto">Solicitar información <i class="fas fa-arrow-right"></i></a>
+      </article>
+
+      <article class="tile t-docs reveal">
+        <span class="stage">Custodia</span>
+        <span class="chip-ico sm"><i class="fas fa-folder-open"></i></span>
+        <h3>Gestión documental</h3>
+        <p>Expedientes organizados, seguros y fáciles de encontrar.</p>
+        <a class="link" href="#contacto">Solicitar información <i class="fas fa-arrow-right"></i></a>
+      </article>
+
+      <article class="tile t-noti reveal">
+        <span class="stage">Comunicación</span>
+        <span class="chip-ico sm"><i class="fas fa-bell"></i></span>
+        <h3>Notificaciones certificadas</h3>
+        <p>Email y SMS con trazabilidad de envío, entrega, apertura y lectura.</p>
+        <a class="link" href="#contacto">Solicitar información <i class="fas fa-arrow-right"></i></a>
+        <img src="assets/comunicaciones.webp" alt="Panel de comunicaciones certificadas">
+      </article>
+
+      <article class="tile t-pag reveal">
+        <span class="stage">Firma</span>
+        <span class="chip-ico sm"><i class="fas fa-file-invoice-dollar"></i></span>
+        <h3>Pagaré electrónico</h3>
+        <p>Emite, endosa y custodia pagarés con validez jurídica.</p>
+        <a class="link" href="#contacto">Solicitar información <i class="fas fa-arrow-right"></i></a>
+        <img src="assets/pagare-2.webp" alt="Pagaré electrónico custodiado">
+      </article>
+
+      <a class="tile t-onb reveal" href="#flujo" style="text-decoration:none">
+        <div class="body">
+          <span class="stage">Todo junto</span>
+          <h3>Onboarding digital</h3>
+          <p>Combina los módulos en un solo flujo, de la captura de datos al expediente final.</p>
+          <span class="link">Ver el flujo <i class="fas fa-arrow-right"></i></span>
+        </div>
+        <div class="onb-line" aria-hidden="true">
+          <span class="chip-ico sm"><i class="fas fa-keyboard"></i></span>
+          <span class="chip-ico sm"><i class="fas fa-fingerprint"></i></span>
+          <span class="chip-ico sm warm"><i class="fas fa-file-signature"></i></span>
+          <span class="chip-ico sm"><i class="fas fa-bell"></i></span>
+          <span class="chip-ico sm"><i class="fas fa-lock"></i></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HUMANO ================= -->
+<section class="section" style="padding-top:0">
+  <div class="wrap human-grid">
+    <div class="tile photo-tile reveal">
+      <img src="assets/tableta-explotacion-mujer-tiro-medio.jpg" alt="Profesional revisando documentos en una tableta">
+      <div class="glass g1"><span class="chip-ico sm"><i class="fas fa-check"></i></span><div><strong>Contrato laboral firmado</strong><small>3 firmantes · 10:45</small></div></div>
+      <div class="glass g2"><span class="chip-ico sm warm"><i class="fas fa-user-check"></i></span><div><strong>Identidad validada</strong><small>Biometría facial</small></div></div>
+    </div>
+    <div class="human-side">
+      <div class="tile human-intro reveal">
+        <p class="eyebrow">Para todas las áreas</p>
+        <h2 class="h-section" style="font-size:clamp(28px,2.8vw,38px)">Menos papel, más tiempo para tu equipo.</h2>
+        <p class="lead" style="font-size:16px">Empresas de todos los tamaños firman y validan con Firma Seguro en cada área.</p>
+      </div>
+      <div class="areas">
+        <div class="tile area reveal"><span class="chip-ico sm"><i class="fas fa-handshake"></i></span><h3>Comercial</h3><p>Contratos, propuestas, órdenes de compra.</p></div>
+        <div class="tile area reveal"><span class="chip-ico sm"><i class="fas fa-gavel"></i></span><h3>Legal</h3><p>Actas, certificados, derechos de petición.</p></div>
+        <div class="tile area reveal"><span class="chip-ico sm"><i class="fas fa-users"></i></span><h3>Gestión humana</h3><p>Contratos de trabajo, otrosíes, liquidaciones.</p></div>
+        <div class="tile area reveal"><span class="chip-ico sm"><i class="fas fa-briefcase"></i></span><h3>Administrativo</h3><p>Facturas, informes, convenios.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLUJO ================= -->
+<section class="section" id="flujo" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow reveal">Onboarding digital</p>
+        <h2 class="h-section reveal">Un flujo completo, con respaldo jurídico en cada paso.</h2>
+      </div>
+      <p class="lead reveal">Úsalas juntas o elige solo las que necesitas. Cada etapa deja evidencia verificable.</p>
+    </div>
+    <div class="flow">
+      <article class="tile flow-step reveal"><span class="num">01</span><span class="chip-ico sm"><i class="fas fa-keyboard"></i></span><h3>Captura de datos</h3><p>Formularios dinámicos que generan tus documentos.</p><div class="tags"><span>Formularios</span></div></article>
+      <article class="tile flow-step reveal"><span class="num">02</span><span class="chip-ico sm warm"><i class="fas fa-fingerprint"></i></span><h3>Validación de identidad</h3><p>Biometría, prueba de vida y listas de riesgo.</p><div class="tags"><span>Biometría</span><span>Listas</span></div></article>
+      <article class="tile flow-step reveal"><span class="num">03</span><span class="chip-ico sm"><i class="fas fa-file-signature"></i></span><h3>Firma o pagaré</h3><p>Con el nivel de firma que exige cada documento.</p><div class="tags"><span>Firma</span><span>Pagaré</span></div></article>
+      <article class="tile flow-step reveal"><span class="num">04</span><span class="chip-ico sm"><i class="fas fa-bell"></i></span><h3>Notificación certificada</h3><p>Copias con certificación de entrega y lectura.</p><div class="tags"><span>Email</span><span>SMS</span></div></article>
+      <article class="tile flow-step last reveal"><span class="num">05</span><span class="chip-ico sm" style="background:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)"><i class="fas fa-lock"></i></span><h3>Expediente seguro</h3><p>Documentos y evidencias custodiados y auditables.</p><div class="tags"><span>Custodia</span></div></article>
+    </div>
+    <div class="flow-cta reveal">
+      <a class="btn btn-blue" href="#contacto">Diseña tu flujo <i class="fas fa-arrow-right"></i></a>
+      <p>Te ayudamos a armarlo según tu proceso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LEGAL ================= -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="legal-grid">
+      <div class="tile t-laws reveal">
+        <p class="eyebrow">Validez jurídica</p>
+        <h2 class="h-section" style="font-size:clamp(28px,2.8vw,40px)">Cada firma, con el respaldo de la ley colombiana.</h2>
+        <ul>
+          <li><strong>Ley 527 de 1999</strong><span>Mensajes de datos, comercio electrónico y firma digital.</span></li>
+          <li><strong>Decreto 2364 de 2012</strong><span>Reglamenta la firma electrónica.</span></li>
+          <li><strong>Ley 2573 de 2026<span class="new">Nueva</span></strong><span>Protección frente a la suplantación de identidad.</span></li>
+        </ul>
+        <a class="link" href="https://firmaseguro.co/marco-normativo/">Ver el marco normativo <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="tile t-onac reveal">
+        <img src="assets/onac.webp" alt="ONAC">
+        <div>
+          <h3>Certificados digitales de entidades acreditadas</h3>
+          <p style="margin-top:8px">La firma digital certificada usa certificados emitidos por entidades acreditadas ante ONAC.</p>
+        </div>
+        <a class="link" href="https://app.firmaseguro.co/verificacion">Valida un documento <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <article class="tile sig s1 reveal">
+        <div class="level" aria-label="Nivel 1 de 3"><span class="on"></span><span></span><span></span></div>
+        <h3>Firma electrónica simple</h3>
+        <p>Códigos, contraseñas o datos biométricos que identifican al firmante.</p>
+        <p class="use"><b>Ideal para</b> documentos internos y de bajo riesgo.</p>
+      </article>
+      <article class="tile sig s2 reveal">
+        <div class="level" aria-label="Nivel 2 de 3"><span class="on"></span><span class="on"></span><span></span></div>
+        <h3>Firma electrónica certificada</h3>
+        <p>Suma factores de autenticación y evidencias del proceso de firma.</p>
+        <p class="use"><b>Ideal para</b> contratos comerciales y laborales.</p>
+      </article>
+      <article class="tile sig s3 reveal">
+        <div class="level" aria-label="Nivel 3 de 3"><span class="on"></span><span class="on"></span><span class="on"></span></div>
+        <h3>Firma digital certificada</h3>
+        <p>Certificado digital que garantiza autenticidad e integridad.</p>
+        <p class="use"><b>Ideal para</b> pagarés y documentos de alto valor.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="section" id="contacto" style="padding-top:0;padding-bottom:0">
+  <div class="wrap">
+    <div class="final-grid">
+      <div class="tile t-free reveal">
+        <p class="eyebrow" style="color:rgba(255,255,255,.8)">Firma electrónica</p>
+        <h3>Firma tus primeros documentos hoy mismo.</h3>
+        <p>Crea tu cuenta, carga un documento y envíalo a firmar en minutos.</p>
+        <a class="btn btn-white" href="https://app.firmaseguro.co/registro">Empieza gratis <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="tile reveal">
+        <p class="eyebrow">Ecosistema completo</p>
+        <h3>Diseñemos juntos tu flujo digital.</h3>
+        <p>Biometría, listas de riesgo, pagarés, notificaciones y gestión documental, integrados a tu proceso.</p>
+        <a class="btn btn-ghost" href="https://firmaseguro.co/contactanos/">Hablar con ventas <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="tile t-dev reveal" id="desarrolladores">
+        <p class="eyebrow">Desarrolladores</p>
+        <h3 style="font-size:22px">Integra la firma en tus sistemas.</h3>
+        <pre><b>POST</b> /documentos
+→ firmantes, tipo de firma
+← expediente con evidencias</pre>
+        <a class="link" href="https://firmaseguro.co/api-firma-digital/" style="margin-top:auto">Conoce la API <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="#"><img src="assets/logo-firma-seguro.png" alt="Firma Seguro · Documentos al instante" width="430" height="142"></a>
+        <p>Plataforma de confianza digital para firmar, validar, notificar y custodiar documentos con validez jurídica en Colombia.</p>
+      </div>
+      <div><h6>Soluciones</h6><ul>
+        <li><a href="#">Firma electrónica y digital</a></li><li><a href="#">Pagaré electrónico</a></li><li><a href="#">Validación biométrica</a></li><li><a href="#">Listas de riesgo</a></li><li><a href="#">Notificaciones certificadas</a></li><li><a href="#">Gestión documental</a></li></ul></div>
+      <div><h6>Recursos</h6><ul>
+        <li><a href="https://firmaseguro.co/blog/">Blog</a></li><li><a href="https://firmaseguro.co/marco-normativo/">Marco normativo</a></li><li><a href="https://app.firmaseguro.co/verificacion">Valida tu documento</a></li><li><a href="#">Anulación de procesos vencidos</a></li></ul></div>
+      <div><h6>Desarrolladores</h6><ul>
+        <li><a href="https://firmaseguro.co/api-firma-digital/">API Firma Digital</a></li><li><a href="https://firma-seguro.gitbook.io/guia-usuario">Documentación</a></li></ul></div>
+      <div><h6>Contacto</h6><ul>
+        <li><a href="https://firmaseguro.co/soporte/">Soporte</a></li><li><a href="https://firmaseguro.co/contactanos/">Cotiza tu plan</a></li><li><a href="https://firmaseguro.co/sugerencias/">Sugerencias</a></li><li><a href="https://app.firmaseguro.co/registro">Crea tu usuario</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Firma Seguro</span>
+      <nav><a href="#">Tratamiento de datos</a><a href="#">Términos y condiciones</a></nav>
+      <div class="social">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); });
+
+  document.querySelectorAll('[data-mega]').forEach((item) => {
+    const btn = item.querySelector('.nav-link');
+    const open = (v) => { item.classList.toggle('open', v); btn.setAttribute('aria-expanded', v); };
+    btn.addEventListener('click', () => open(!item.classList.contains('open')));
+    item.addEventListener('mouseenter', () => { if (window.innerWidth > 1080) open(true); });
+    item.addEventListener('mouseleave', () => { if (window.innerWidth > 1080) open(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') open(false); });
+  });
+
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('nav');
+  toggle.addEventListener('click', () => {
+    const v = !nav.classList.contains('mobile-open');
+    nav.classList.toggle('mobile-open', v);
+    toggle.setAttribute('aria-expanded', v);
+    toggle.innerHTML = v ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+  });
+</script>
+</body>
+</html>

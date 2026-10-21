@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Acta de evidencias · datos ficticios</title>
+<!-- Réplica del acta con datos 100% ficticios para usar como captura en la web.
+     IPs en rangos de documentación (RFC 5737), correos @empresa-demo.co, QR decorativo (no codifica nada). -->
+<style>
+  body{margin:0;background:#fff;font-family:Arial,Helvetica,sans-serif;color:#000;font-size:13.5px;line-height:1.35}
+  .page{width:967px;height:641px;overflow:hidden;box-sizing:border-box;padding:18px 54px 0 62px;border-left:1px solid #ddd}
+  h4{margin:0 0 14px;font-size:13.5px}
+  .avail{display:grid;grid-template-columns:98px 1fr;border:1px solid #000;height:134px;margin-left:-8px}
+  .avail .qr{border-right:1px solid #000;display:grid;place-items:center}
+  .avail .txt{display:flex;align-items:center;padding:0 2px}
+  .avail a{color:#1a35c9;font-weight:700}
+  .sec{margin-top:44px}
+  .ind{margin-left:10px}
+  .ind p{margin:0}
+  .ind .lbl{font-weight:700;margin-top:14px}
+  .ok{color:#1d8a1d}.no{color:#e01b1b}
+  table{border-collapse:collapse;margin:14px 0 0 10px;width:848px}
+  td{border:1px solid #999;vertical-align:top;padding:3px 4px}
+  td.n{width:16px;font-weight:700;vertical-align:middle;text-align:center}
+  td.who{width:300px}
+  td b{font-weight:700}
+</style>
+</head>
+<body>
+<div class="page" id="acta">
+  <h4>Disponibilidad del documento:</h4>
+  <div class="avail">
+    <div class="qr"><svg id="qr" width="86" height="86" viewBox="0 0 29 29" shape-rendering="crispEdges"></svg></div>
+    <div class="txt"><div>El documento puede ser consultado a través de su Número de caso y/o QR en nuestra plataforma <a>https://app.firmaseguro.co/frontoffice/Verification?<br>hash=3b9e1c7d5a2f48e6b0c94d1f7a6e2b85</a></div></div>
+  </div>
+
+  <div class="sec">
+    <h4 style="margin-bottom:10px">Autenticidad:</h4>
+    <p style="margin:0">A continuación encontrará información detallada de cada responsable de la firma electrónica / digital contenida en el documento:</p>
+  </div>
+
+  <div class="ind">
+    <p class="lbl" style="margin-top:22px">Identificador de clave de firma:</p>
+    <p>A4:1F:9C:3E:7B:22:D8:05:6A:B1:4E:90:C7:13:5D:F2:08:6B:E4:39</p>
+    <p class="lbl">Información detallada:</p>
+    <p>Nombre del proceso: Solicitud de firma de contrato laboral</p>
+    <p>Remitente: Laura Gómez</p>
+    <p>Tipo de notificación: <span class="ok">✔</span> Email <span class="no">✖</span> WhatsApp</p>
+    <p class="lbl" style="margin-top:18px">Verificación de identidad:</p>
+  </div>
+
+  <table>
+    <tr>
+      <td class="n">1</td>
+      <td class="who">Laura Gómez<br>Cedula de Ciudadania<br>1020304050<br>laura.gomez@empresa-demo.co<br>3000000001<br>Finalizado</td>
+      <td><b>Método de autenticación:</b> OTP Email<br><b>Código OTP:</b> 4821<br><b>Fecha de envío del OTP:</b> 19-10-2026 05:30 p. m.<br><b>Fecha de firma:</b> 19-10-2026 05:31 p. m.<br><b>IP Firmante:</b> 203.0.113.24</td>
+    </tr>
+    <tr>
+      <td class="n">2</td>
+      <td class="who">Andrés Ruiz Castro<br>Cedula de Ciudadania<br>1098765432<br>andres.ruiz@empresa-demo.co<br>3000000002<br>Finalizado</td>
+      <td><b>Método de autenticación:</b> OTP Email<br><b>Código OTP:</b> 7305<br><b>Fecha de envío del OTP:</b> 19-10-2026 07:41 p. m.<br><b>Fecha de firma:</b> 19-10-2026 07:42 p. m.<br><b>IP Firmante:</b> 198.51.100.7</td>
+    </tr>
+  </table>
+</div>
+<script>
+  // QR decorativo: patrones de posición + módulos pseudoaleatorios (no codifica ningún dato)
+  const svg = document.getElementById('qr'), N = 29;
+  let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  const finder = (x, y) => [[0,0,7,7,1],[1,1,5,5,0],[2,2,3,3,1]].map(([dx,dy,w,h,on]) => `<rect x="${x+dx}" y="${y+dy}" width="${w}" height="${h}" fill="${on ? '#000' : '#fff'}"/>`).join('');
+  const inFinder = (x, y) => (x < 8 && y < 8) || (x > N - 9 && y < 8) || (x < 8 && y > N - 9);
+  let html = `<rect width="${N}" height="${N}" fill="#fff"/>`;
+  for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) if (!inFinder(x, y) && rnd() > 0.52) html += `<rect x="${x}" y="${y}" width="1" height="1" fill="#000"/>`;
+  html += finder(0, 0) + finder(N - 7, 0) + finder(0, N - 7);
+  svg.innerHTML = html;
+</script>
+</body>
+</html>

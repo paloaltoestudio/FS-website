@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opciones de color · tarjeta clara</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;font-family:"Onest",sans-serif;color:#173179;background:#fff;padding:48px 24px}
+  .wrap{max-width:1100px;margin:0 auto;display:grid;gap:56px}
+  h1{margin:0 0 4px;font-size:28px}
+  .opt h2{margin:0 0 4px;font-size:20px}
+  .opt p.note{margin:0 0 16px;color:#717C9C;font-size:14px}
+  .opt code{font-family:"IBM Plex Mono",monospace;font-size:13px;background:#F4F7FB;padding:2px 6px;border-radius:5px}
+  .paths{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .path{border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:14px;min-height:240px}
+  .path h3{margin:0;font-size:30px;line-height:1.1;letter-spacing:-.025em;font-weight:800}
+  .path p{margin:0;font-size:16px;color:#4A5784}
+  .btn{align-self:flex-start;margin-top:auto;display:inline-flex;gap:10px;align-items:center;font-weight:700;font-size:16px;border-radius:10px;padding:15px 24px;background:#1D74B8;color:#fff;text-decoration:none}
+  .dark{background:#0A1B45;color:#fff}
+  .dark p{color:rgba(255,255,255,.74)}
+  .dark .btn{background:#fff;color:#173179}
+  .chips{display:flex;gap:10px;margin-top:14px;align-items:center}
+  .chip{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px}
+  .ico{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-weight:800}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <h1>Fondo de la tarjeta clara: opciones</h1>
+    <p style="margin:0;color:#717C9C">Cada opción incluye el tono para íconos y chips, que hoy usan el mismo azul claro.</p>
+  </div>
+
+  <section class="opt">
+    <h2>Actual · azul cielo <code>#EAF4FB</code></h2>
+    <p class="note">El que no te convence: tira a celeste y se separa del azul de marca.</p>
+    <div class="paths">
+      <article class="path" style="background:#EAF4FB"><h3>Firma tus primeros documentos hoy mismo.</h3><p>Crea tu cuenta, carga un documento y envíalo a firmar en minutos.</p><a class="btn">Empieza gratis →</a></article>
+      <article class="path dark"><h3>Diseñemos juntos tu flujo digital.</h3><p>Biometría, listas de riesgo, pagarés y más.</p><a class="btn">Hablar con ventas →</a></article>
+    </div>
+  </section>
+
+  <section class="opt">
+    <h2>A · Tinte del azul de texto <code>#EEF1F8</code></h2>
+    <p class="note">Sale del #173179: más sobrio, conversa con los títulos. Íconos/chips: <code>#E4E9F5</code> + texto <code>#173179</code>.</p>
+    <div class="paths">
+      <article class="path" style="background:#EEF1F8"><h3>Firma tus primeros documentos hoy mismo.</h3><p>Crea tu cuenta, carga un documento y envíalo a firmar en minutos.</p><a class="btn">Empieza gratis →</a></article>
+      <article class="path dark"><h3>Diseñemos juntos tu flujo digital.</h3><p>Biometría, listas de riesgo, pagarés y más.</p><a class="btn">Hablar con ventas →</a></article>
+    </div>
+    <div class="chips"><span class="ico" style="background:#E4E9F5;color:#173179">✎</span><span class="chip" style="background:#E4E9F5;color:#173179">Firma electrónica</span></div>
+  </section>
+
+  <section class="opt">
+    <h2>B · Gris frío neutro <code>#F4F6F9</code></h2>
+    <p class="note">Casi blanco, sin tinte azul. Deja que el azul viva solo en botones y títulos. Íconos/chips: <code>#EDF0F5</code>.</p>
+    <div class="paths">
+      <article class="path" style="background:#F4F6F9"><h3>Firma tus primeros documentos hoy mismo.</h3><p>Crea tu cuenta, carga un documento y envíalo a firmar en minutos.</p><a class="btn">Empieza gratis →</a></article>
+      <article class="path dark"><h3>Diseñemos juntos tu flujo digital.</h3><p>Biometría, listas de riesgo, pagarés y más.</p><a class="btn">Hablar con ventas →</a></article>
+    </div>
+    <div class="chips"><span class="ico" style="background:#EDF0F5;color:#1D74B8">✎</span><span class="chip" style="background:#EDF0F5;color:#173179">Firma electrónica</span></div>
+  </section>
+
+  <section class="opt">
+    <h2>C · Blanco cálido <code>#F7F5F1</code></h2>
+    <p class="note">Contraste humano con el azul oscuro; más editorial y menos "tech". Íconos/chips: <code>#EFEBE4</code>.</p>
+    <div class="paths">
+      <article class="path" style="background:#F7F5F1"><h3>Firma tus primeros documentos hoy mismo.</h3><p>Crea tu cuenta, carga un documento y envíalo a firmar en minutos.</p><a class="btn">Empieza gratis →</a></article>
+      <article class="path dark"><h3>Diseñemos juntos tu flujo digital.</h3><p>Biometría, listas de riesgo, pagarés y más.</p><a class="btn">Hablar con ventas →</a></article>
+    </div>
+    <div class="chips"><span class="ico" style="background:#EFEBE4;color:#173179">✎</span><span class="chip" style="background:#EFEBE4;color:#173179">Firma electrónica</span></div>
+  </section>
+
+  <section class="opt">
+    <h2>D · Azul de marca sólido <code>#173179</code></h2>
+    <p class="note">Tarjeta en el mismo azul de los textos, con letra blanca. Dos tarjetas oscuras, pero distintas en tono. Íconos/chips: se mantendría A.</p>
+    <div class="paths">
+      <article class="path" style="background:#173179;color:#fff"><h3>Firma tus primeros documentos hoy mismo.</h3><p style="color:rgba(255,255,255,.8)">Crea tu cuenta, carga un documento y envíalo a firmar en minutos.</p><a class="btn" style="background:#fff;color:#173179">Empieza gratis →</a></article>
+      <article class="path dark"><h3>Diseñemos juntos tu flujo digital.</h3><p>Biometría, listas de riesgo, pagarés y más.</p><a class="btn">Hablar con ventas →</a></article>
+    </div>
+  </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# Video original pesado (la página usa assets/firma_demo-web.mp4)
+assets/firma_demo.mp4
+
+# Captura con datos personales reales (la página usa assets/evidencias-demo.png)
+assets/evidencias.png
+
+.DS_Store
